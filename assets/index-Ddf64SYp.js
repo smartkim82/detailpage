@@ -1,0 +1,22 @@
+(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))a(e);new MutationObserver(e=>{for(const o of e)if(o.type==="childList")for(const n of o.addedNodes)n.tagName==="LINK"&&n.rel==="modulepreload"&&a(n)}).observe(document,{childList:!0,subtree:!0});function i(e){const o={};return e.integrity&&(o.integrity=e.integrity),e.referrerPolicy&&(o.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?o.credentials="include":e.crossOrigin==="anonymous"?o.credentials="omit":o.credentials="same-origin",o}function a(e){if(e.ep)return;e.ep=!0;const o=i(e);fetch(e.href,o)}})();const d=[{id:"interior",label:"🏠 인테리어/건축",icon:"🏠"},{id:"food",label:"🍽 식품/건강",icon:"🍽"},{id:"it",label:"💻 전자제품/IT",icon:"💻"},{id:"beauty",label:"💄 뷰티/화장품",icon:"💄"},{id:"fashion",label:"👗 패션/잡화",icon:"👗"},{id:"pet",label:"🐶 반려동물",icon:"🐶"},{id:"kids",label:"👶 유아/교육",icon:"👶"},{id:"b2b",label:"🏭 산업용/B2B",icon:"🏭"},{id:"daily",label:"🧴 생활용품",icon:"🧴"},{id:"other",label:"✨ 기타",icon:"✨"}],p=["가성비","프리미엄","친환경","특허기술","국내생산","수입정품","저자극","고성능","간편사용","기타"],m={food:[{name:"원산지",type:"text",placeholder:"예: 국내산, 호주산 등"},{name:"알레르기 유발 성분",type:"text",placeholder:"예: 대두, 밀, 우유 함유"},{name:"보관 방법",type:"text",placeholder:"예: 냉장/냉동/실온 보관"},{name:"HACCP 여부",type:"radio",options:["인증 완료","없음"]},{name:"맛 표현 키워드",type:"text",placeholder:"예: 매콤달콤, 겉바속촉"}],beauty:[{name:"피부 타입",type:"checkbox",options:["건성","지성","복합성","민감성","모든피부"]},{name:"전성분",type:"textarea",placeholder:"주요 성분 또는 전성분 입력"},{name:"사용 방법",type:"textarea",placeholder:"사용 순서 및 방법"},{name:"임상 테스트 여부",type:"radio",options:["완료","없음"]}],it:[{name:"배터리 용량",type:"text",placeholder:"예: 5000mAh"},{name:"소비전력",type:"text",placeholder:"예: 2200W"},{name:"KC 인증 여부",type:"radio",options:["인증됨","미인증"]},{name:"호환 기종/OS",type:"text",placeholder:"예: iOS, Android, PC 호환"}],interior:[{name:"시공 면적/크기",type:"text",placeholder:"예: 30평대, 100x200cm"},{name:"시공 방식",type:"text",placeholder:"예: 셀프 시공, 전문가 시공"},{name:"유지관리 방법",type:"textarea",placeholder:"물청소 가능 여부 등"},{name:"내구연한/보증기간",type:"text",placeholder:"예: 무상보증 5년"}]};document.addEventListener("DOMContentLoaded",()=>{u(),y();const r=document.getElementById("brandColor"),t=document.getElementById("colorHex");r.addEventListener("input",a=>{t.textContent=a.target.value});const i=document.getElementById("featuresGroup");i.addEventListener("change",a=>{i.querySelectorAll("input:checked").length>5&&(alert("주요 특징은 최대 5개까지만 선택 가능합니다."),a.target.checked=!1)}),document.getElementById("ai-form").addEventListener("submit",a=>{a.preventDefault(),alert("AI 상세페이지 기획이 시작됩니다! (데모 화면 완성)")})});function u(){const r=document.getElementById("categoryGroup");r.innerHTML=d.map(t=>`
+    <label class="card-radio">
+      <input type="radio" name="category" value="${t.id}">
+      <div class="card-content">
+        <div>${t.icon}</div>
+        <div style="font-size:0.9rem; margin-top:0.5rem">${t.label.replace(t.icon,"").trim()}</div>
+      </div>
+    </label>
+  `).join(""),r.querySelectorAll('input[name="category"]').forEach(t=>{t.addEventListener("change",i=>h(i.target.value))})}function y(){const r=document.getElementById("featuresGroup");r.innerHTML=p.map(t=>`
+    <label class="btn-check">
+      <input type="checkbox" name="feature" value="${t}"> ${t}
+    </label>
+  `).join("")}function h(r){const t=document.getElementById("dynamic-section"),i=document.getElementById("dynamic-section-title"),a=document.getElementById("dynamic-fields"),e=m[r];if(!e){t.classList.add("hidden"),a.innerHTML="";return}const o=d.find(n=>n.id===r).label;i.innerText=`${o} 맞춤 추가 정보`,t.classList.remove("hidden"),a.innerHTML=e.map(n=>{let l="";return n.type==="text"?l=`<input type="text" placeholder="${n.placeholder||""}" class="dynamic-input">`:n.type==="textarea"?l=`<textarea rows="2" placeholder="${n.placeholder||""}"></textarea>`:n.type==="radio"?l='<div class="pills-group">'+n.options.map((c,s)=>`
+          <label class="pill"><input type="radio" name="dyn_${n.name}" value="${c}"> ${c}</label>
+        `).join("")+"</div>":n.type==="checkbox"&&(l='<div class="checkbox-group">'+n.options.map((c,s)=>`
+          <label class="btn-check"><input type="checkbox" name="dyn_${n.name}" value="${c}"> ${c}</label>
+        `).join("")+"</div>"),`
+      <div class="form-group slide-down">
+        <label>${n.name}</label>
+        ${l}
+      </div>
+    `}).join("")}
