@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI 상세페이지 기획 폼</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <!-- Background Elements -->
+    <div class="bg-shape bg-shape-1"></div>
+    <div class="bg-shape bg-shape-2"></div>
+
+    <div class="container">
+      <header class="app-header">
+        <h1>AI 상세페이지 제작</h1>
+        <p>놀라운 속도와 퀄리티, AI가 분석하고 기획하는 완벽한 맞춤형 상세페이지</p>
+      </header>
+      
+      <form id="ai-form" class="main-form">
+        <!-- 1. 기본 정보 -->
+        <section class="form-section fade-in">
+          <div class="section-header">
+            <span class="step-badge">1</span>
+            <h2>기본 정보</h2>
+          </div>
+          
+          <div class="form-group">
+            <label for="productName">제품명 / 서비스명은 무엇인가요?</label>
+            <input type="text" id="productName" placeholder="예: 무중력 메모리폼 매트리스" required>
+          </div>
+
+          <div class="form-group">
+            <label>카테고리를 선택해주세요</label>
+            <div class="cards-grid" id="categoryGroup">
+              <!-- JS 로 동적 생성 -->
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>제품 유형</label>
+            <div class="pills-group">
+              <label class="pill"><input type="radio" name="productType" value="실물 제품"> 실물 제품</label>
+              <label class="pill"><input type="radio" name="productType" value="서비스"> 서비스</label>
+              <label class="pill"><input type="radio" name="productType" value="시공/설치형"> 시공/설치형</label>
+              <label class="pill"><input type="radio" name="productType" value="디지털 콘텐츠"> 디지털 콘텐츠</label>
+              <label class="pill"><input type="radio" name="productType" value="구독형"> 구독형</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="usp">한 줄 핵심 문장 (USP)을 작성해주세요</label>
+            <input type="text" id="usp" placeholder="예: 바삭하고 쫀득한 프리미엄 수제 쿠키">
+          </div>
+        </section>
+
+        <!-- 카테고리별 동적 섹션 (선택 시 삽입) -->
+        <section id="dynamic-section" class="form-section hidden fade-in">
+          <div class="section-header">
+            <span class="step-badge">✨</span>
+            <h2 id="dynamic-section-title">추가 정보</h2>
+          </div>
+          <div id="dynamic-fields" class="dynamic-fields-container"></div>
+        </section>
+
+        <!-- 2. 대상 고객 정의 -->
+        <section class="form-section fade-in">
+          <div class="section-header">
+            <span class="step-badge">2</span>
+            <h2>대상 고객 정의</h2>
+          </div>
+          
+          <div class="form-group">
+            <label>주 타겟 고객은 누구인가요? (다중 선택 가능)</label>
+            <div class="checkbox-group">
+              <label class="btn-check"><input type="checkbox" name="target" value="2030여성"> 20~30대 여성</label>
+              <label class="btn-check"><input type="checkbox" name="target" value="4050남성"> 40~50대 남성</label>
+              <label class="btn-check"><input type="checkbox" name="target" value="학부모"> 학부모</label>
+              <label class="btn-check"><input type="checkbox" name="target" value="자영업자"> 자영업자</label>
+              <label class="btn-check"><input type="checkbox" name="target" value="공공기관"> 공공기관</label>
+              <label class="btn-check"><input type="checkbox" name="target" value="기업(B2B)"> 기업(B2B)</label>
+              <label class="btn-check"><input type="checkbox" name="target" value="기타"> 기타</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="painPoint">고객이 겪는 가장 큰 문제는 무엇인가요?</label>
+            <textarea id="painPoint" rows="3" placeholder="예: 유지비 부담, 맛이 없음, 기능 부족 등"></textarea>
+          </div>
+        </section>
+
+        <!-- 3. 제품/서비스 정보 -->
+        <section class="form-section fade-in">
+          <div class="section-header">
+            <span class="step-badge">3</span>
+            <h2>제품/서비스 정보</h2>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group half">
+              <label for="price">판매가</label>
+              <input type="text" id="price" placeholder="예: 49,000원">
+            </div>
+            <div class="form-group half">
+              <label>할인 여부</label>
+              <div class="pills-group">
+                <label class="pill"><input type="radio" name="discount" value="있음"> 있음</label>
+                <label class="pill"><input type="radio" name="discount" value="없음"> 없음</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>가격 정책</label>
+            <div class="pills-group">
+              <label class="pill"><input type="radio" name="pricePolicy" value="단품"> 단품</label>
+              <label class="pill"><input type="radio" name="pricePolicy" value="패키지"> 패키지</label>
+              <label class="pill"><input type="radio" name="pricePolicy" value="상담후결정"> 상담 후 결정</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>주요 특징 (최대 5개 선택)</label>
+            <div class="checkbox-group" id="featuresGroup">
+              <!-- JS 렌더링 -->
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="specs">제품 스펙 / 구성 / 용량 / 규격</label>
+            <textarea id="specs" rows="3"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="diff">경쟁 제품과 차별점</label>
+            <textarea id="diff" rows="3"></textarea>
+          </div>
+        </section>
+
+        <!-- 4. 신뢰 요소 -->
+        <section class="form-section fade-in">
+          <div class="section-header">
+            <span class="step-badge">4</span>
+            <h2>신뢰 요소</h2>
+          </div>
+          
+          <div class="form-group">
+            <label>인증 / 특허 / 시험성적서 여부</label>
+            <div class="pills-group">
+              <label class="pill"><input type="radio" name="cert" value="있음"> 있음</label>
+              <label class="pill"><input type="radio" name="cert" value="없음"> 없음</label>
+              <label class="pill"><input type="radio" name="cert" value="진행중"> 진행 중</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="reviews">리뷰 또는 고객 반응 (있다면 입력)</label>
+            <textarea id="reviews" rows="3"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="asPolicy">A/S / 교환 / 환불 정책</label>
+            <textarea id="asPolicy" rows="2"></textarea>
+          </div>
+        </section>
+
+        <!-- 5. 콘텐츠 자료 업로드 -->
+        <section class="form-section fade-in">
+          <div class="section-header">
+            <span class="step-badge">5</span>
+            <h2>콘텐츠 자료 업로드</h2>
+          </div>
+          
+          <div class="form-group flex-upload">
+            <label class="upload-btn">
+              <span>🔗 제품 이미지 업로드</span>
+              <input type="file" multiple class="hidden-input">
+            </label>
+            <label class="upload-btn">
+              <span>🔗 전/후 사진 업로드</span>
+              <input type="file" multiple class="hidden-input">
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label for="refLink">참고 사이트 / 링크</label>
+            <input type="url" id="refLink" placeholder="https://...">
+          </div>
+
+          <div class="form-group">
+            <label for="brandColor">브랜드 핵심 컬러 (클릭하여 선택)</label>
+            <div class="color-picker-wrapper">
+              <input type="color" id="brandColor" value="#4f46e5">
+              <span id="colorHex">#4f46e5</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- 6. 상세페이지 스타일 선택 -->
+        <section class="form-section fade-in">
+          <div class="section-header">
+            <span class="step-badge">6</span>
+            <h2>상세페이지 스타일 선택</h2>
+          </div>
+          
+          <div class="form-group">
+            <label>원하는 스타일</label>
+            <div class="cards-grid style-grid">
+              <label class="card-radio"><input type="radio" name="style" value="감성스토리"><div class="card-content">🌸 감성 스토리형</div></label>
+              <label class="card-radio"><input type="radio" name="style" value="문제해결"><div class="card-content">💡 문제 해결형</div></label>
+              <label class="card-radio"><input type="radio" name="style" value="데이터기술"><div class="card-content">📊 데이터/기술 중심형</div></label>
+              <label class="card-radio"><input type="radio" name="style" value="후기강조"><div class="card-content">⭐ 후기 강조형</div></label>
+              <label class="card-radio"><input type="radio" name="style" value="가격세일"><div class="card-content">💰 가격 세일형</div></label>
+              <label class="card-radio"><input type="radio" name="style" value="프리미엄"><div class="card-content">👑 프리미엄 브랜딩형</div></label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>플랫폼 선택</label>
+            <div class="pills-group">
+              <label class="pill"><input type="radio" name="platform" value="스마트스토어"> 스마트스토어</label>
+              <label class="pill"><input type="radio" name="platform" value="쿠팡"> 쿠팡</label>
+              <label class="pill"><input type="radio" name="platform" value="자사몰"> 자사몰</label>
+              <label class="pill"><input type="radio" name="platform" value="아마존"> 아마존</label>
+              <label class="pill"><input type="radio" name="platform" value="인스타/광고"> 인스타/광고용</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>페이지 길이</label>
+            <div class="pills-group">
+              <label class="pill"><input type="radio" name="pageLength" value="간결형"> 간결형</label>
+              <label class="pill"><input type="radio" name="pageLength" value="표준형"> 표준형</label>
+              <label class="pill"><input type="radio" name="pageLength" value="롱폼형"> 롱폼형</label>
+            </div>
+          </div>
+        </section>
+
+        <div class="form-actions">
+          <button type="submit" class="submit-btn" id="submitBtn">
+            <span>AI 상세페이지 기획 시작하기</span>
+            <div class="spinner hidden"></div>
+          </button>
+        </div>
+      </form>
+    </div>
+    
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
